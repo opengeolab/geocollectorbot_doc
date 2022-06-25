@@ -7,14 +7,6 @@ introduction
 ------------
 getting started
 ---------------
-overview
---------
-usage
------
-configuration
--------------
-examples
---------
 Help and Support
 ----------------
 Contributors

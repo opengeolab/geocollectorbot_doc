@@ -6,14 +6,19 @@
 Welcome to GeoCollector Bot's documentation!
 ============================================
 
-Telegram BOT for geodata collection, developed within the project INSUBRI.PARKS funded by the Interreg Co-operation Programme Italy–Switzerland 2014 -2020 (ID 605472).
+Telegram BOT for geodata collection, developed within the project `INSUBRI.PARKS <https://insubriparksturismo.eu/>`_ funded by the Interreg Co-operation Programme Italy–Switzerland 2014 -2020 (ID 605472).
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: For users:
 
    intro
 
+.. toctree::
+   :maxdepth: 2
+   :caption: For developers:
+
+   developers
 
 
 Indices and tables
