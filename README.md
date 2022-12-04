@@ -24,7 +24,7 @@ Python to run.
   ```shell
   sphinx-build -b html docs/source/ docs/build/html
   ```
-5. Serve the docs on [localhost:8000](http://locahost:8000)
+5. Serve the docs on [localhost:8000](http://localhost:8000/)
   ```shell
   cd docs/build/html && python3 -m http.server
   ```

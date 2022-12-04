@@ -63,11 +63,11 @@ Whenever a user sends the :file:`/collect` command, the Bot starts a new interac
 On our database we have a new record with the following structure:
 ::
    {
-  "id": "123", // Unique identifier of the interaction
-  "chatId": "456", // Unique identifier of the user's chat
-  "username": "user_name", // Username of the user performing the interactions
-  "currStepId": "description", // Id of the current step (in this case equal to the id of the first step)
-  "interactionState": "ongoing", // State of the interaction
+      "id": "123", // Unique identifier of the interaction
+      "chatId": "456", // Unique identifier of the user's chat
+      "username": "user_name", // Username of the user performing the interactions
+      "currStepId": "description", // Id of the current step (in this case equal to the id of the first step)
+      "interactionState": "ongoing", // State of the interaction
    }
 
 The Bot reads the configuration to find the first step and sends to the user the first question (*Please, describe the issue*, in our example).
@@ -79,12 +79,12 @@ When the user does respond, the Bot queries the database to find an interaction 
 Once the answer has been successfully validated, the Bot finds the next step (step :file:`location` in our example), and updates the interaction on the database. The record will now be:
 ::
    {
-  "id": "123", // Unique identifier of the interaction
-  "chatId": "456", // Unique identifier of the user's chat
-  "username": "user_name", // Username of the user performing the interactions
-  "currStepId": "location", // Id of the current step (in this case equal to the id of the second step)
-  "interactionState": "ongoing", // State of the interaction
-  "description": "Answer to the first question"
+      "id": "123", // Unique identifier of the interaction
+      "chatId": "456", // Unique identifier of the user's chat
+      "username": "user_name", // Username of the user performing the interactions
+      "currStepId": "location", // Id of the current step (in this case equal to the id of the second step)
+      "interactionState": "ongoing", // State of the interaction
+      "description": "Answer to the first question"
    }
 
 The process is repeated for the location step:
@@ -96,13 +96,13 @@ The process is repeated for the location step:
 The record is updated for the last time ending up being:
 ::
    {
-  "id": "123", // Unique identifier of the interaction
-  "chatId": "456", // Unique identifier of the user's chat
-  "username": "user_name", // Username of the user performing the interactions
-  "currStepId": "location", // Id of the current step (in this case equal to the id of the last step)
-  "interactionState": "completed", // State of the interaction
-  "description": "Answer to the first question",
-  "location": "User's provided location"
+      "id": "123", // Unique identifier of the interaction
+      "chatId": "456", // Unique identifier of the user's chat
+      "username": "user_name", // Username of the user performing the interactions
+      "currStepId": "location", // Id of the current step (in this case equal to the id of the last step)
+      "interactionState": "completed", // State of the interaction
+      "description": "Answer to the first question",
+      "location": "User's provided location"
    }
 
 Usage
@@ -129,7 +129,7 @@ Run with Docker Compose
 +++++++++++++++++++++++
 Since you need more than one service to run the Bot (e.g., a database and the Bot itself), `Docker Compose <https://docs.docker.com/compose/>`_ may come in handy.
 
-The :ref:`examples <ex>` folder of the repository contains some set-ups that allow you to quickly run a complete functioning Bot with different configurations using Docker Compose.
+The `examples <https://github.com/opengeolab/geocollectorbot/tree/main/examples>` folder of the repository contains some set-ups that allow you to quickly run a complete functioning Bot with different configurations using Docker Compose.
 
 To use them, you just need to download the directory and follow the instructions in the :file:`README.md` file you can find inside.
 
@@ -288,9 +288,9 @@ The service needs to be configured to work properly, and this configuration shou
 The configuration has three main blocks, :ref:`the flow of questions <q_flow>`, the :ref:`data storage <datastrg>` configuration, and optionally the :ref:`media storage <mediastrg>` configuration, resulting in the following object:
 ::
    {
-  "flow": { ... },
-  "dataStorage": { ... },
-  "mediaStorage": { ... }
+      "flow": { ... },
+      "dataStorage": { ... },
+      "mediaStorage": { ... }
    }
 
 .. _q_flow:
@@ -300,8 +300,8 @@ Questions flow
 The :file:`flow` property is used to configure the flow of questions that the Bot will pose to the user. It has the following structure:
 ::
    {
-  "firstStepId": "id of the first step",
-  "steps": [ ... ]
+      "firstStepId": "id of the first step",
+      "steps": [ ... ]
    }
 
 Where,
@@ -316,11 +316,11 @@ Steps
 Each element of the :file:`steps` array has the following structure:
 :: 
    {
-  "id": "id of the step",
-  "question": "question text",
-  "config": { ... },
-  "persistAs": "key on the db",
-  "nextStepId": "id of the next step"
+      "id": "id of the step",
+      "question": "question text",
+      "config": { ... },
+      "persistAs": "key on the db",
+      "nextStepId": "id of the next step"
    }
 
 Where,
@@ -356,7 +356,7 @@ This type of question accepts a text as answer.
 The :file:`config` props for this kind of step has the following shape:
 ::
    {
-  "type": "text"
+      "type": "text"
    }
 
 Multiple choice question
@@ -366,15 +366,15 @@ This type of question presents accepts one of a series of predefined options as 
 The :file:`config` props for this kind of step has the following shape:
 ::
    {
-  "type": "multipleChoice",
-  "options": [ ... ]
+      "type": "multipleChoice",
+      "options": [ ... ]
    }
 
 The **options** field is used to specify the possible answer to be presented to the user. It is an array whose items are arrays of objects. Each element of the outer array is a row of options, while each element of the inner arrays is a column. The options themselves are the items of the inner arrays, and they have the following shape:
 ::
    {
-  "text": "...",
-  "value": "..."
+      "text": "...",
+      "value": "..."
    }
 
 Where,
@@ -388,7 +388,7 @@ This type of question accepts the current location of the user as answer.
 The :file:`config` props for this kind of step has the following shape:
 ::
    {
-  "type": "location"
+      "type": "location"
    }
 
 Media question
@@ -398,8 +398,8 @@ This type of question accepts a media as answer. For now, only photos are accept
 The :file:`config` props for this kind of step has the following shape:
 ::
    {
-  "type": "media",
-  "subType": "photo"
+      "type": "media",
+      "subType": "photo"
    }
 
 To be able to use media questions in your flow you need to set up a :ref:`media storage <mediastrg>`, The media itself will be saved in the media storage, while on the data storage will be persisted the relative URL to be called to download the media (i.e., GET - :file:`<host_name_of_your_bot>/media/:mediaId`).
@@ -415,11 +415,11 @@ PostgreSQL
 To use PostgreSQL as storage, the property :file:`dataStorage` should have the following structure:
 ::
    {
-  "type": "postgres",
-  "configuration": {
-       "connectionString": "db connection string",
-       "interactionsTable": "name of the table where interactions are saved",
-       "ssl": false
+      "type": "postgres",
+      "configuration": {
+         "connectionString": "db connection string",
+         "interactionsTable": "name of the table where interactions are saved",
+         "ssl": false
       }
    }
 
@@ -477,7 +477,7 @@ For example, lets consider the following data storage configuration:
      "configuration": {
        "connectionString": "{{CONNECTION_STRING}}",
        "interactionsTable": "interactions"
-    }
+      }
    }
 
 If in your environment you have the :file:`CONNECTION_STRING` variable, the final configuration will look like this:
@@ -504,8 +504,3 @@ The bot always uses `Markdown V2 <https://core.telegram.org/bots/api#markdownv2-
 The keys used by the bot can be found in the default english translation file.
 
 Please note that if you provide your own translations, an :file:`en.yaml` file should always be provided in your custom folder.
-
-.. _ex:
-
-Examples
---------
