@@ -6,9 +6,11 @@ To know how the Bot works you can follow this documentation:
 Overview
 --------
 
-Geo Collector Bot is a configurable `Telegram Bot <https://core.telegram.org/bots>`_ designed to allow users to collect geodata on the field.
+Geo Collector Bot is a configurable `Telegram Bot <https://core.telegram.org/bots>`_ designed to allow users to collect 
+geodata on the field.
 
-The Bot poses a series of questions to the user and persists the answers to a database. Both the flow of questions and the persistence are :ref:`configurable <conf>`.
+The Bot poses a series of questions to the user and persists the answers to a database. Both the flow of questions and 
+the persistence are :ref:`configurable <conf>`.
 
 Architecture
 ++++++++++++
@@ -19,20 +21,26 @@ It follows a basic, high-level architecture of the Bot.
    :scale: 100%
    :align: left
 
-All the communications between the end user and the Bot are disintermediated by the *Telegram Bot API*, while the Bot communicates directly with a database for *data storage* and, optionally, one for *media file storage*.
+All the communications between the end user and the Bot are disintermediated by the *Telegram Bot API*, while the Bot
+communicates directly with a database for *data storage* and, optionally, one for *media file storage*.
 
 How it works
 ++++++++++++
-Under the hood, the Bot manages a `finite-state machine <https://en.wikipedia.org/wiki/Finite-state_machine>`_ received through the configuration. The *states* of the machine are the questions posed to the user, and the answers are what causes the *transitions* between states.
+Under the hood, the Bot manages a `finite-state machine <https://en.wikipedia.org/wiki/Finite-state_machine>`_ received
+through the configuration. The *states* of the machine are the questions posed to the user, and the answers are what
+causes the *transitions* between states.
 
-It follows a sequence diagram that shows the internal flow of the Bot when a user issues a new interaction with the :file:`/collect` command (remember that all the communications between the user and the Bot pass through the *Telegram Bot API*).
+It follows a sequence diagram that shows the internal flow of the Bot when a user issues a new interaction with the
+:file:`/collect` command (remember that all the communications between the user and the Bot pass through the *Telegram
+Bot API*).
 
 .. image:: /images/interaction_flow.png
    :alt: Interaction Flow
    :scale: 100%
    :align: left
 
-To better understand the flow, lets consider a Bot with the following basic configuration (for a detailed explanation see the :ref:`relevant section <conf>`).
+To better understand the flow, lets consider a Bot with the following basic configuration (for a detailed explanation see
+the :ref:`relevant section <conf>`).
 ::
    {
      "dataStorage": { ... },
@@ -58,7 +66,9 @@ To better understand the flow, lets consider a Bot with the following basic conf
      }
    }
 
-Whenever a user sends the :file:`/collect` command, the Bot starts a new interaction. Firstly, it checks if the user already has an ongoing interaction, in which case it sends back an error to the user. If no interaction is found on the database, the Bot creates a new one using the **id of the chat** as key to link the interaction and the user.
+Whenever a user sends the :file:`/collect` command, the Bot starts a new interaction. Firstly, it checks if the user
+already has an ongoing interaction, in which case it sends back an error to the user. If no interaction is found on the
+database, the Bot creates a new one using the **id of the chat** as key to link the interaction and the user.
 
 On our database we have a new record with the following structure:
 ::
@@ -70,13 +80,18 @@ On our database we have a new record with the following structure:
       "interactionState": "ongoing", // State of the interaction
    }
 
-The Bot reads the configuration to find the first step and sends to the user the first question (*Please, describe the issue*, in our example).
+The Bot reads the configuration to find the first step and sends to the user the first question (*Please, describe the
+issue*, in our example).
 
-Being the Bot stateless, it now looses any knowledge about the interaction or the users, and just keep listening for new messages. This means that the user can respond to the question asynchronously, at any time it wants.
+Being the Bot stateless, it now looses any knowledge about the interaction or the users, and just keep listening for new
+messages. This means that the user can respond to the question asynchronously, at any time it wants.
 
-When the user does respond, the Bot queries the database to find an interaction with :file:`interactionState` equals to :file:`ongoing` and :file:`chatId` equals to the identifier of the user's chat. If none is found, an error is sent back, otherwise, the answer is validated against the current step configuration (in our example, the answer has to be a text message).
+When the user does respond, the Bot queries the database to find an interaction with :file:`interactionState` equals to
+:file:`ongoing` and :file:`chatId` equals to the identifier of the user's chat. If none is found, an error is sent back,
+otherwise, the answer is validated against the current step configuration (in our example, the answer has to be a text message).
 
-Once the answer has been successfully validated, the Bot finds the next step (step :file:`location` in our example), and updates the interaction on the database. The record will now be:
+Once the answer has been successfully validated, the Bot finds the next step (step :file:`location` in our example), and
+updates the interaction on the database. The record will now be:
 ::
    {
       "id": "123", // Unique identifier of the interaction
@@ -116,26 +131,33 @@ The Bot exposes the following commands.
  + :file:`/help` to get information about the Bot.
  + :file:`/collect` to start a new data gathering process.
  + :file:`/abort` to abort the currently ongoing interaction.
+ + :file:`/skip` to skip the current question (if possible).
 
 .. _token:
 
 Create a new Bot
 ++++++++++++++++
-The first thing you need to do is create a new Telegram Bot, following the `official documentation <https://core.telegram.org/bots#3-how-do-i-create-a-bot>`_.
+The first thing you need to do is create a new Telegram Bot, following the 
+`official documentation <https://core.telegram.org/bots#3-how-do-i-create-a-bot>`_.
 
-You will receive an **authentication token** that you will need to provide to this service as an :ref:`environment variable <env_var>`.
+You will receive an **authentication token** that you will need to provide to this service as an 
+:ref:`environment variable <env_var>`.
 
 Run with Docker Compose
 +++++++++++++++++++++++
-Since you need more than one service to run the Bot (e.g., a database and the Bot itself), `Docker Compose <https://docs.docker.com/compose/>`_ may come in handy.
+Since you need more than one service to run the Bot (e.g., a database and the Bot itself), 
+`Docker Compose <https://docs.docker.com/compose/>`_ may come in handy.
 
-The `examples <https://github.com/opengeolab/geocollectorbot/tree/main/examples>` folder of the repository contains some set-ups that allow you to quickly run a complete functioning Bot with different configurations using Docker Compose.
+The `examples <https://github.com/opengeolab/geocollectorbot/tree/main/examples>` folder of the repository contains some
+set-ups that allow you to quickly run a complete functioning Bot with different configurations using Docker Compose.
 
-To use them, you just need to download the directory and follow the instructions in the :file:`README.md` file you can find inside.
+To use them, you just need to download the directory and follow the instructions in the :file:`README.md` file you can
+find inside.
 
 Run with Docker
 +++++++++++++++
-If you don't want to set up your whole project using Docker Compose, you can run the standalone Bot Docker image with the following command:
+If you don't want to set up your whole project using Docker Compose, you can run the standalone Bot Docker image with the
+following command:
 ::
    docker run --name geo-collector-bot \
   --detach \
@@ -154,13 +176,19 @@ Let's go through the lines of the command one by one.
 
 :file:`--detach` runs the container in the background.
 
-:file:`-e TELEGRAM_AUTH_TOKEN="<telegram_auth_token>"` sets the environment variable :file:`TELEGRAM_AUTH_TOKEN`. You need to substitute :file:`<telegram_auth_token>` with the token generated :ref:`here <token>`.
-The other :ref:`variables <env_var>` are not set here since we want to use their default value, but you can provide your own values with the same syntax (i.e., :file:`-e <variable_name>=<variable_value>`).
+:file:`-e TELEGRAM_AUTH_TOKEN="<telegram_auth_token>"` sets the environment variable :file:`TELEGRAM_AUTH_TOKEN`. You
+need to substitute :file:`<telegram_auth_token>` with the token generated :ref:`here <token>`. The other
+:ref:`variables <env_var>` are not set here since we want to use their default value, but you can provide your own values
+with the same syntax (i.e., :file:`-e <variable_name>=<variable_value>`).
 
-:file:`-v <absolute_path_to_config_file>:/home/node/config.json` mounts a new `volume <https://docs.docker.com/storage/volumes/>`_ containing the :ref:`configuration file <conf_service>`. You need to substitute :file:`<absolute_path_to_config_file>` with the absolute path of your configuration file on the host.
-Please note that with this command, in the container the file will be placed under :file:`/home/node/config.json` which is the default value of the :file:`CONFIGURATION_PATH` environment variable. If you provide a different value for this variable you need to change tht mount path accordingly.
+:file:`-v <absolute_path_to_config_file>:/home/node/config.json` mounts a new `volume <https://docs.docker.com/storage/volumes/>`_
+containing the :ref:`configuration file <conf_service>`. You need to substitute :file:`<absolute_path_to_config_file>` with
+the absolute path of your configuration file on the host. Please note that with this command, in the container the file
+will be placed under :file:`/home/node/config.json` which is the default value of the :file:`CONFIGURATION_PATH` environment
+variable. If you provide a different value for this variable you need to change tht mount path accordingly.
 
-:file:`-v <absolute_path_to_custom_translations_folder>:/home/node/custom_locales` mounts a new volume containing the :ref:`custom translation <custom_transl>` files. The line is not in the command above, add it if you need the functionality.
+:file:`-v <absolute_path_to_custom_translations_folder>:/home/node/custom_locales` mounts a new volume containing the
+:ref:`custom translation <custom_transl>` files. The line is not in the command above, add it if you need the functionality.
 
 :file:`-p 8080:8080` exposes the port on which the Bot runs.
 
@@ -174,7 +202,8 @@ To run the Bot locally you firstly need to clone the repository running
 
 The Bot is written in Typescript, so you will need to install `Node.js <https://nodejs.org/it/>`_ 14+ and `yarn <https://yarnpkg.com/>`_
 
-To set up Node, please if possible try to use nvm, so you can manage multiple versions easily. Once you have installed nvm, you can go inside the directory of the project and simply run
+To set up Node, please if possible try to use nvm, so you can manage multiple versions easily. Once you have installed nvm,
+you can go inside the directory of the project and simply run
 ::
    nvm install
 
@@ -192,7 +221,8 @@ and build the project with
 ::
    yarn build
 
-To run, the Bot will need an :ref:`environment variables <env_var>` file and a :ref:`configuration <conf>` file. You can find an example of both of them in the repository, namely :file:`example.env` and :file:`config.example.json`.
+To run, the Bot will need an :ref:`environment variables <env_var>` file and a :ref:`configuration <conf>` file. You can
+find an example of both of them in the repository, namely :file:`example.env` and :file:`config.example.json`.
 
 Make your own copy of the files with
 ::
@@ -270,27 +300,46 @@ The service accepts the following environment variables.
      - X
      - public url on which the Bot is exposed. Needed (and required) if UPDATE_MODE is :file:`webhook`
      - \
+   * - GET_MEDIA_BASE_PATH
+     - string
+     - X
+     - base url on which collected :ref:`medias <mediaqstn>` are served
+     - :file:`/media`
 
 Update mode
 ^^^^^^^^^^^
-Telegram Bots can receive updates from the Telegram server in two ways, **polling** or **webhook**, as explained `here <https://core.telegram.org/bots/api#getting-updates>`_.
+Telegram Bots can receive updates from the Telegram server in two ways, **polling** or **webhook**, as explained
+`here <https://core.telegram.org/bots/api#getting-updates>`_.
 
 Geo Collector Bot supports both of these modalities, through the **UPDATE_MODE** environment variable.
 
-If the variable is set to :file:`webhook`, you also need to provide a value to the **PUBLIC_URL** environment variable. This should be the public url on which your instance of this service is reachable (e.g., https://geo-collector-bot.herokuapp.com).
+If the variable is set to :file:`webhook`, you also need to provide a value to the **PUBLIC_URL** environment variable.
+This should be the public url on which your instance of this service is reachable (e.g., https://geo-collector-bot.herokuapp.com).
 
 .. _conf_service:
 
 Service configuration
 +++++++++++++++++++++
-The service needs to be configured to work properly, and this configuration should be provided through a JSON file. The schema of the configuration can be found here, while an example can be found here.
+The service needs to be configured to work properly, and this configuration should be provided through a JSON file.
+The schema of the configuration can be found (and referenced from)
+`here <https://raw.githubusercontent.com/opengeolab/geocollectorbot/main/src/schemas/config.schema.json>`_, while an
+example can be found `here <https://github.com/opengeolab/geocollectorbot/blob/main/config.example.json>`_.
 
-The configuration has three main blocks, :ref:`the flow of questions <q_flow>`, the :ref:`data storage <datastrg>` configuration, and optionally the :ref:`media storage <mediastrg>` configuration, resulting in the following object:
+The configuration has five main blocks
+
+ + :ref:`flow of questions <q_flow>`,
+ + :ref:`data storage <datastrg>` configuration, 
+ + :ref:`media storage <mediastrg>` configuration,
+ + :ref:`global settings <globalsettings>`,
+ + :ref:`hooks <hooks>` configuration,
+resulting in the following object:
 ::
    {
+      "settings": { ... },
       "flow": { ... },
       "dataStorage": { ... },
       "mediaStorage": { ... }
+      "hooks": { ... }
    }
 
 .. _q_flow:
@@ -321,19 +370,28 @@ Each element of the :file:`steps` array has the following structure:
       "config": { ... },
       "persistAs": "key on the db",
       "nextStepId": "id of the next step"
+      "skippable": "true if the question can be skipped"
    }
 
 Where,
  * **id** is the unique identified of the step.
  * **question** is the message sent to the user.
  * **config** defines the type of question (more about this below).
- * **persistAs** can be used to specify how the answer is persisted on the database. It is optional, if not provided the id will be used instead.
+ * **persistAs** can be used to specify how the answer is persisted on the database. It is optional, if not provided theid will be used instead.
  * **nextStepId** is the identifier of the following step. It is optional, if not provided the sept is considered to be the end if the interaction.
+ * **skippable** is a boolean flag stating if the question can be skipped with command :file:`/skip`.
 
 .. warning:: 
-   There is a set of reserved keys used by the Bot, and properties :file:`id` and :file:`persistAs` cannot be equal to one of those keys. The reserved keys are **id**, **chatId**, **username**, **currStepId**, **interactionState**, **createdAt**, and **updatedAt**. On top of those, each :ref:`data storage <datastrg>` has a set of its own reserved keys. Consult the relative documentation to know which values are prohibited.
+   There is a set of reserved keys used by the Bot, and properties :file:`id` and :file:`persistAs` cannot be equal to
+   one of those keys. The reserved keys are **id**, **chatId**, **username**, **currStepId**, **interactionState**,
+   **createdAt**, and **updatedAt**. On top of those, each :ref:`data storage <datastrg>` has a set of its own reserved keys.
+   Consult the relative documentation to know which values are prohibited.
 
-While the property **question** can be a simple string, the Bot gives you the possibility to internationalize the messages sent to the user. To do so, you can provide an object whose keys are `ETF language tags <https://en.wikipedia.org/wiki/IETF_language_tag>`_, and values are localized versions of the question text. If the language of the user is not found, the english translation will be used as fallback, so remember to **always provide the** :file:`en` **key in your localized questions**.
+While the property **question** can be a simple string, the Bot gives you the possibility to internationalize the messages
+sent to the user. To do so, you can provide an object whose keys are
+`ETF language tags <https://en.wikipedia.org/wiki/IETF_language_tag>`_, and values are localized versions of the question
+text. If the language of the user is not found, the english translation will be used as fallback, so remember to
+**always provide the** :file:`en` **key in your localized questions**.
 
 For example, a correctly localized question has the following form:
 ::
@@ -370,7 +428,9 @@ The :file:`config` props for this kind of step has the following shape:
       "options": [ ... ]
    }
 
-The **options** field is used to specify the possible answer to be presented to the user. It is an array whose items are arrays of objects. Each element of the outer array is a row of options, while each element of the inner arrays is a column. The options themselves are the items of the inner arrays, and they have the following shape:
+The **options** field is used to specify the possible answer to be presented to the user. It is an array whose items are
+arrays of objects. Each element of the outer array is a row of options, while each element of the inner arrays is a column.
+The options themselves are the items of the inner arrays, and they have the following shape:
 ::
    {
       "text": "...",
@@ -391,24 +451,32 @@ The :file:`config` props for this kind of step has the following shape:
       "type": "location"
    }
 
+.. _mediaqstn:
+
 Media question
 **************
-This type of question accepts a media as answer. For now, only photos are accepted.
+This type of question accepts a **single** media as answer.
 
 The :file:`config` props for this kind of step has the following shape:
 ::
    {
-      "type": "media",
-      "subType": "photo"
+      "type": "singleMedia",
+      "subType": "photo" | "video"
    }
 
-To be able to use media questions in your flow you need to set up a :ref:`media storage <mediastrg>`, The media itself will be saved in the media storage, while on the data storage will be persisted the relative URL to be called to download the media (i.e., GET - :file:`<host_name_of_your_bot>/media/:mediaId`).
+With property :file:`subType` you can restrict the accepted answers to a specific media type. If the property is not
+set, the Bot will accept all types of media. 
+
+To be able to use media questions in your flow you need to set up a :ref:`media storage <mediastrg>`. The media itself
+will be saved in the media storage, while on the data storage will be persisted the relative URL to be called to download
+the media composed by :file:`<GET_MEDIA_BASE_PATH env variable>/:mediaId`.
 
 .. _datastrg:
 
 Data storage
 ^^^^^^^^^^^^
-The :file:`dataStorage` property is used to configure where the interactions should be persisted. The Bot is built to support multiple storage types, but for now only `PostgreSQL <https://www.postgresql.org/>`_ can be used.
+The :file:`dataStorage` property is used to configure where the interactions should be persisted. The Bot is built to 
+support multiple storage types, but for now only `PostgreSQL <https://www.postgresql.org/>`_ can be used.
 
 PostgreSQL
 ##########
@@ -436,9 +504,11 @@ The table you create to save your interaction should have the following base col
 with :file:`id` being the **primary key** of the table.
 
 .. warning:: 
-   The name of those base columns cannot be used as property :file:`id` or :file:`persistAs` of your steps, on top of the keys listed in the :ref:`steps section <steps>`.
+   The name of those base columns cannot be used as property :file:`id` or :file:`persistAs` of your steps, on top of the
+   keys listed in the :ref:`steps section <steps>`.
 
-Then you should add to the table a column for each of your questions named as the :file:`id` or :file:`persistAs` property of the corresponding step.
+Then you should add to the table a column for each of your questions named as the :file:`id` or :file:`persistAs` property
+of the corresponding step.
  * The column for a text question should be of type :file:`character varying`.
  * The column for a multiple choice question should be of type :file:`character varying`.
  * The column for a location question should be of type :file:`character varying`.
@@ -448,9 +518,11 @@ Then you should add to the table a column for each of your questions named as th
 
 Media storage
 ^^^^^^^^^^^^^
-The :file:`dataStorage` property is used to configure where the media send by users should be persisted. The Bot is built to support multiple storage types, but for now only **file system** can be used.
+The :file:`mediaStorage` property is used to configure where the media send by users should be persisted. The Bot is built
+to support multiple storage types, but for now only **file system** can be used.
 
-Regardless of the storage used, the Bot will persist on the database the path to be called to retrieve the media in the form of :file:`/media/:media_id`.
+Regardless of the storage used, the Bot will persist on the database the path to be called to retrieve the media in the
+form of :file:`/media/:media_id`.
 
 File system
 ###########
@@ -464,11 +536,47 @@ To use file system as storage, the property :file:`mediaStorage` should have the
    }
 
 .. tip:: 
-   If you are using the file system ad media storage in a Docker container, remember to bind a volume to the configured :file:`folderPath` (that in this case will refer to a location inside the container) to persist the saved media after the container is stopped.
+   If you are using the file system ad media storage in a Docker container, remember to bind a volume to the configured
+   :file:`folderPath` (that in this case will refer to a location inside the container) to persist the saved media after
+   the container is stopped.
+
+.. _globalsettings:
+
+Global settings
+^^^^^^^^^^^^^^^
+
+The :file:`settings` property can be used to define the following global settings regarding the Bot:
+
+* :file:`includeUserInfoInGetInteractionsApi` is a boolean flag that states if user's data should be returned by the :ref:`get interactions API <get_interactions>`.
+
+.. _hooks:
+
+Hooks
+^^^^^
+
+Hooks are functions run in response to specific events in the Bot lifecycle. 
+
+On complete
+##########
+
+The :file:`onComplete` hook is run every time an interaction is completed with success. If configured, the Bot will
+perform a POST HTTP request to the specified url with the whole interaction as body. 
+
+The hook configuration has the following structure:
+::
+   {
+      "hooks": {
+        "onComplete": {
+          "type": "http-post",
+          "url": "The url to which the POST call should be exectued"
+        }
+      }
+   }
 
 Configuration values interpolation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Each string value in the data storage and media storage configuration can be substituted at run time with an environment variable if it is annotated with a `Handlebars template <https://handlebarsjs.com/>`_.
+Each string value in the data storage and media storage configuration can be substituted at run time with an environment
+variable if it is annotated with a `Handlebars template <https://handlebarsjs.com/>`_.
 
 For example, lets consider the following data storage configuration:
 ::
@@ -494,13 +602,47 @@ If in your environment you have the :file:`CONNECTION_STRING` variable, the fina
 
 Custom translations
 +++++++++++++++++++
-This Bot is built to be multi-language. By default, only English translation is offered, and English is the default and fallback language in case the translation for the user's language is not provided.
+This Bot is built to be multi-language. By default, only English translation is offered, and English is the default and
+fallback language in case the translation for the user's language is not provided.
 
-You can easily provide your own custom translations inside a folder referenced by the :file:`CUSTOM_TRANSLATIONS_FOLDER_PATH` :ref:`environment variables <env_var>`. Each translation file should be a valid :file:`.yaml` file (please note that :file:`.yml` files will not be accepted) named as :file:`ietf_language_code.yaml` (e.g., :file:`en.yaml`). An explanation of what IETF language tags are can be found 
-`here <https://en.wikipedia.org/wiki/IETF_language_tag>`_.
+You can easily provide your own custom translations inside a folder referenced by the
+:file:`CUSTOM_TRANSLATIONS_FOLDER_PATH` :ref:`environment variables <env_var>`. Each translation file should be a valid
+:file:`.yaml` file (please note that :file:`.yml` files will not be accepted) named as :file:`ietf_language_code.yaml`
+(e.g., :file:`en.yaml`). An explanation of what IETF language tags are can be found `here <https://en.wikipedia.org/wiki/IETF_language_tag>`_.
 
-The bot always uses `Markdown V2 <https://core.telegram.org/bots/api#markdownv2-style>`_ as formatting option, so feel free to use it in your custom translation (pay attention to the characters that need to be escaped!).
+The bot always uses `Markdown V2 <https://core.telegram.org/bots/api#markdownv2-style>`_ as formatting option, so feel
+free to use it in your custom translation (pay attention to the characters that need to be escaped!).
 
 The keys used by the bot can be found in the default english translation file.
 
 Please note that if you provide your own translations, an :file:`en.yaml` file should always be provided in your custom folder.
+
+.. _apis:
+
+Exposed APIs
+-------------
+
+.. _get_interactions:
+
+Get interactions
+++++++++++++++++
+
+The :file:`GET - /interactions` API returns a list of the interactions collected. With the :file:`includeUserInfoInGetInteractionsApi`
+:ref:`setting <globalsettings>` you can control whether the API returns interactions chat id and username or not.
+
+The complete schema of the API can be found `here <https://github.com/opengeolab/geocollectorbot/blob/main/src/api/get-interactions/schema.ts>`_. 
+
+.. _send_message:
+
+Send message
+++++++++++++
+
+The :file:`POST - /send-message` API can be used to programmatically send a message to specific chats. The API accepts
+the following JSON body:
+::
+   {
+     "chatIds": ["chat_1", "chat_2"] // Ids of the chats that should receive the message,
+     "message": "message to be sent to all chats"
+   }
+
+The complete schema of the API can be found `here <https://github.com/opengeolab/geocollectorbot/blob/main/src/api/send-message/schema.ts>`_. 
