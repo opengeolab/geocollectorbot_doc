@@ -28,7 +28,7 @@ Access
 
 The Bot is online and reachable from Telegram at the `following link <t.me/GeoCollectorBot_Insubriparks_bot>`_ or directly typing *GeoCollectorBot_Insubriparks* in the application search bar.
 
-.. image:: /images/access.jpg
+.. image:: /images/access.JPG
    :alt: Bot Architecture
    :scale: 100%
    :align: left
@@ -37,7 +37,7 @@ Form filling and type of collected data
 +++++++++++++++++++++++++++++++++++++++
 At the first start of the chat, a short description of the Bot will appear, with a welcome message. To activate the chat the user is asked to use the button AVVIA. On startup, a MENU will be available in which it will be possible to activate the data collection for a new report or to delete the current one. 
 
-.. image:: /images/form.jpg
+.. image:: /images/form.JPG
    :alt: Bot Architecture
    :scale: 100%
    :align: left
@@ -48,7 +48,7 @@ The data that the Bot allows to collect are the following:
  + **User position**: click on the box to share your location at that precise moment (it may be necessary to allow localization services);
  + **Photo**: click on the button INSERISCI ALLEGATO to be able to take a picture or select it from the gallery and after that press INVIO.
 
-.. image:: /images/form2.jpg
+.. image:: /images/form2.JPG
    :alt: Bot Architecture
    :scale: 100%
    :align: left
@@ -72,7 +72,7 @@ Step 4
 ^^^^^^
 After that, the Bot will proceed to ask the user to share his location, so the activation of the location services is required.
 
-.. image:: /images/form3.jpg
+.. image:: /images/form3.JPG
    :alt: Bot Architecture
    :scale: 50%
    :align: right
@@ -100,7 +100,7 @@ Access to Dashboard
 ^^^^^^^^^^^^^^^^^^^
 The link to access the Dashboard is `here <http://159.69.82.129/InsubriParks/index.xhtml>`_. The browser may ask to confirm over warnings on connection security. 
 
-.. image:: /images/dash.jpg
+.. image:: /images/dash.JPG
    :alt: Bot Architecture
    :scale: 100%
    :align: left
@@ -111,7 +111,7 @@ Access to reports
 ^^^^^^^^^^^^^^^^^
 The reports can be accessed through the map or the table.
 
-.. image:: /images/reports.jpg
+.. image:: /images/reports.JPG
    :alt: Bot Architecture
    :scale: 100%
    :align: left
@@ -120,14 +120,14 @@ Visualization
 #############
 By clicking on one report on the map, it is possible to open the control panel and visualize its content (text, photos, …). 
 
-.. image:: /images/visualiz.jpg
+.. image:: /images/visualiz.JPG
    :alt: Bot Architecture
    :scale: 100%
    :align: left
 
 The same panel can also be opened from the table by double-clicking on the relative row.
 
-.. image:: /images/visualiz2.jpg
+.. image:: /images/visualiz2.JPG
    :alt: Bot Architecture
    :scale: 100%
    :align: left
@@ -137,21 +137,21 @@ Managing reports
 From the same control panel, by opening the subpanel :file:`MESSAGGI` and clicking on :file:`NUOVO MESSAGGIO` it is possible to:
  + change the status of a report from :file:`APERTA`(default) to :file:`PRESA IN CARICO` and :file:`CHIUSA`. To make the change effective, it is required to save. The current state of each report is visible from the map through different markers, while the change status history can be seen in the :file:`MESSAGGI` subpanel;
 
- .. image:: /images/repman.jpg
+ .. image:: /images/repman.JPG
    :alt: Bot Architecture
    :scale: 100%
    :align: left
 
  + add a comment on a report, using the text box *Messaggio* and save it. The comment history can be seen in the :file:`MESSAGGI` subpanel as well;
 
- .. image:: /images/repman2.jpg
+ .. image:: /images/repman2.JPG
    :alt: Bot Architecture
    :scale: 100%
    :align: left
 
  + send a message to the chat of the user that created that specific report through the same *Messaggio* box, by using the :file:`INVIA` button and then saving. The user will receive the feedback directly in the Telegram chat. The message history can also be seen in the :file:`MESSAGGI` subpanel.
 
- .. image:: /images/repman3.jpg
+ .. image:: /images/repman3.JPG
    :alt: Bot Architecture
    :scale: 100%
    :align: left
@@ -160,7 +160,7 @@ Deleting a report
 ^^^^^^^^^^^^^^^^^
 To delete a report, it is sufficient to right-click on the specific row of the table and use the button :file:`CESTINA`.
 
-.. image:: /images/del.jpg
+.. image:: /images/del.JPG
    :alt: Bot Architecture
    :scale: 100%
    :align: left
