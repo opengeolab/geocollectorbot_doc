@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Documentation &mdash; GeoCollector Bot 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Documentation" href="developers.html" />
+    <link rel="prev" title="Welcome to GeoCollector Bot’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> GeoCollector Bot
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">For users:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#access">Access</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#form-filling-and-type-of-collected-data">Form filling and type of collected data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#step-1">Step 1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-2">Step 2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-3">Step 3</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-4">Step 4</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#step-5">Step 5</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#visualization-and-management-of-the-reports-through-a-web-dashboard">Visualization and management of the reports through a Web Dashboard</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#access-to-dashboard">Access to Dashboard</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#access-to-reports">Access to reports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#managing-reports">Managing reports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#deleting-a-report">Deleting a report</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">For developers:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="developers.html">Documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">GeoCollector Bot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Documentation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/intro.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="documentation">
+<h1>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline"></a></h1>
+<p>This is the users documentation to know how the Bot works.</p>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline"></a></h2>
+<p>The GeoCollectorBot allows the collection and manages georeferenced reports on the field, that are sent to those who use them for managing and improving user services.
+It is a free and open-source tool that does not require the installation of other specific applications besides Telegram. It’s made of:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>a Telegram Bot API, that allows controlling the sending of messages from the users to the offices and the feedback of the office admins to the users;</p></li>
+<li><p>a Dashboard Web with visualization, research, modification of collected reports, and notification send to the users’ functionalities;</p></li>
+<li><p>a Database where the Bot saves all the information.</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h2>
+<dl class="simple">
+<dt>To access the Bot, the installation of Telegram is necessary and available on:</dt><dd><ul class="simple">
+<li><p>Android</p></li>
+<li><p>IOS</p></li>
+<li><p>Desktop</p></li>
+</ul>
+</dd>
+</dl>
+<p>Since it doesn’t require installing any other specific application, it favors the contribution to sporadic users as well.
+The Bot can be used both in desktop and mobile versions, but it is meant for the second one, as it allows reporting real-time problems, that are sent and organized automatically in a database to be solved as soon as possible.</p>
+</div>
+<div class="section" id="access">
+<h2>Access<a class="headerlink" href="#access" title="Permalink to this headline"></a></h2>
+<p>The Bot is online and reachable from Telegram at the <a class="reference external" href="t.me/GeoCollectorBot_Insubriparks_bot">following link</a> or directly typing <em>GeoCollectorBot_Insubriparks</em> in the application search bar.</p>
+<a class="reference internal image-reference" href="_images/access.JPG"><img alt="Bot Architecture" class="align-left" src="_images/access.JPG" style="width: 718.0px; height: 316.0px;" /></a>
+<div class="section" id="form-filling-and-type-of-collected-data">
+<h3>Form filling and type of collected data<a class="headerlink" href="#form-filling-and-type-of-collected-data" title="Permalink to this headline"></a></h3>
+<p>At the first start of the chat, a short description of the Bot will appear, with a welcome message. To activate the chat the user is asked to use the button AVVIA. On startup, a MENU will be available in which it will be possible to activate the data collection for a new report or to delete the current one.</p>
+<a class="reference internal image-reference" href="_images/form.JPG"><img alt="Bot Architecture" class="align-left" src="_images/form.JPG" style="width: 917.0px; height: 517.0px;" /></a>
+<dl class="simple">
+<dt>The data that the Bot allows to collect are the following:</dt><dd><ul class="simple">
+<li><p><strong>Multiple choice</strong>: click on one of the options to tell which place the report is referring to;</p></li>
+<li><p><strong>Textual description</strong>: type the text and press the button INVIO;</p></li>
+<li><p><strong>User position</strong>: click on the box to share your location at that precise moment (it may be necessary to allow localization services);</p></li>
+<li><p><strong>Photo</strong>: click on the button INSERISCI ALLEGATO to be able to take a picture or select it from the gallery and after that press INVIO.</p></li>
+</ul>
+</dd>
+</dl>
+<a class="reference internal image-reference" href="_images/form2.JPG"><img alt="Bot Architecture" class="align-left" src="_images/form2.JPG" style="width: 922.0px; height: 363.0px;" /></a>
+<div class="section" id="step-1">
+<h4>Step 1<a class="headerlink" href="#step-1" title="Permalink to this headline"></a></h4>
+<p>Once the installation is complete, the Bot can be found at this <a class="reference external" href="t.me/geo_collector_bot">link</a>, and at the first start the screen that appears is the following.
+The first available command is <code class="file docutils literal notranslate"><span class="pre">/start</span></code>, which allows starting the Bot.
+Then, as indicated by the Bot answer itself, it is possible to start data collection through the command <code class="file docutils literal notranslate"><span class="pre">/collect</span></code>. It is not necessary to write this command, it is sufficient to click on the one received in the message. It is always possible to abort the current insertion by clicking on the <code class="file docutils literal notranslate"><span class="pre">menù</span></code> button on the bottom left of the screen, and it has to be done if a new insertion wants to be started.</p>
+</div>
+<div class="section" id="step-2">
+<h4>Step 2<a class="headerlink" href="#step-2" title="Permalink to this headline"></a></h4>
+<p>The Bot proceeds to list some places and the user will have to select the one where he is. Any text insertion will be considered invalid, as you are expected to select only from the provided list.</p>
+</div>
+<div class="section" id="step-3">
+<h4>Step 3<a class="headerlink" href="#step-3" title="Permalink to this headline"></a></h4>
+<p>The bot will confirm the user’s choice and ask him to provide a description of the problem found. The user will have to insert a text message that illustrates what happened in the most concise but exhaustive way possible. Any answer that is not textual will be invalid, so it is not possible to send photos, attachments of any kind, or any other stuff at this step.</p>
+</div>
+<div class="section" id="step-4">
+<h4>Step 4<a class="headerlink" href="#step-4" title="Permalink to this headline"></a></h4>
+<p>After that, the Bot will proceed to ask the user to share his location, so the activation of the location services is required.</p>
+<a class="reference internal image-reference" href="_images/form3.JPG"><img alt="Bot Architecture" class="align-right" src="_images/form3.JPG" style="width: 132.0px; height: 257.5px;" /></a>
+</div>
+<div class="section" id="step-5">
+<h4>Step 5<a class="headerlink" href="#step-5" title="Permalink to this headline"></a></h4>
+<p>The last step asks to provide photos that picture the problem found, as proof of the event. Only an attached photo will be considered a valid answer. Once this last step is completed, the Bot will save the answers.</p>
+<div class="section" id="id1">
+<h5><a class="headerlink" href="#id1" title="Permalink to this headline"></a></h5>
+</div>
+<div class="section" id="id2">
+<h5><a class="headerlink" href="#id2" title="Permalink to this headline"></a></h5>
+</div>
+<div class="section" id="id3">
+<h5><a class="headerlink" href="#id3" title="Permalink to this headline"></a></h5>
+<p></p>
+</div>
+</div>
+</div>
+<div class="section" id="visualization-and-management-of-the-reports-through-a-web-dashboard">
+<h3>Visualization and management of the reports through a Web Dashboard<a class="headerlink" href="#visualization-and-management-of-the-reports-through-a-web-dashboard" title="Permalink to this headline"></a></h3>
+<p>A <strong>Dashboard</strong> has been provided to test the correct functioning of the Bot. In particular, it analyzes visualization, research, modification of collected reports, and notifications sent to the users’ functionalities.</p>
+<p>In general, the Bot can be connected to every system that can manage geospatial data and it allows to receive feedback messages through these systems. The example below shows the connection to <em>InsubriParks</em>.
+In its final form, the Bot will be integrated into the prototype version of PAM and will use the functionalities of report managing itself. The instructions reported below are deliberately minimal and exclusively refer to the Dashboard testing functionalities of the Bot.</p>
+<div class="section" id="access-to-dashboard">
+<h4>Access to Dashboard<a class="headerlink" href="#access-to-dashboard" title="Permalink to this headline"></a></h4>
+<p>The link to access the Dashboard is <a class="reference external" href="http://159.69.82.129/InsubriParks/index.xhtml">here</a>. The browser may ask to confirm over warnings on connection security.</p>
+<a class="reference internal image-reference" href="_images/dash.JPG"><img alt="Bot Architecture" class="align-left" src="_images/dash.JPG" style="width: 930.0px; height: 439.0px;" /></a>
+<p>User credentials can be provided as shown in the table below. For the purpose of testing, a test name and password have been created.</p>
+</div>
+<div class="section" id="access-to-reports">
+<h4>Access to reports<a class="headerlink" href="#access-to-reports" title="Permalink to this headline"></a></h4>
+<p>The reports can be accessed through the map or the table.</p>
+<a class="reference internal image-reference" href="_images/reports.JPG"><img alt="Bot Architecture" class="align-left" src="_images/reports.JPG" style="width: 914.0px; height: 427.0px;" /></a>
+<p>By clicking on one report on the map, it is possible to open the control panel and visualize its content (text, photos, …).</p>
+<a class="reference internal image-reference" href="_images/visualiz.JPG"><img alt="Bot Architecture" class="align-left" src="_images/visualiz.JPG" style="width: 921.0px; height: 446.0px;" /></a>
+<p>The same panel can also be opened from the table by double-clicking on the relative row.</p>
+<a class="reference internal image-reference" href="_images/visualiz2.JPG"><img alt="Bot Architecture" class="align-left" src="_images/visualiz2.JPG" style="width: 923.0px; height: 435.0px;" /></a>
+</div>
+<div class="section" id="managing-reports">
+<h4>Managing reports<a class="headerlink" href="#managing-reports" title="Permalink to this headline"></a></h4>
+<dl>
+<dt>From the same control panel, by opening the subpanel <code class="file docutils literal notranslate"><span class="pre">MESSAGGI</span></code> and clicking on <code class="file docutils literal notranslate"><span class="pre">NUOVO</span> <span class="pre">MESSAGGIO</span></code> it is possible to:</dt><dd><ul class="simple">
+<li><p>change the status of a report from <code class="file docutils literal notranslate"><span class="pre">APERTA`(default)</span> <span class="pre">to</span> <span class="pre">:file:`PRESA</span> <span class="pre">IN</span> <span class="pre">CARICO</span></code> and <code class="file docutils literal notranslate"><span class="pre">CHIUSA</span></code>. To make the change effective, it is required to save. The current state of each report is visible from the map through different markers, while the change status history can be seen in the <code class="file docutils literal notranslate"><span class="pre">MESSAGGI</span></code> subpanel;</p></li>
+</ul>
+<a class="reference internal image-reference" href="_images/repman.JPG"><img alt="Bot Architecture" class="align-left" src="_images/repman.JPG" style="width: 901.0px; height: 400.0px;" /></a>
+<ul class="simple">
+<li><p>add a comment on a report, using the text box <em>Messaggio</em> and save it. The comment history can be seen in the <code class="file docutils literal notranslate"><span class="pre">MESSAGGI</span></code> subpanel as well;</p></li>
+</ul>
+<a class="reference internal image-reference" href="_images/repman2.JPG"><img alt="Bot Architecture" class="align-left" src="_images/repman2.JPG" style="width: 858.0px; height: 392.0px;" /></a>
+<ul class="simple">
+<li><p>send a message to the chat of the user that created that specific report through the same <em>Messaggio</em> box, by using the <code class="file docutils literal notranslate"><span class="pre">INVIA</span></code> button and then saving. The user will receive the feedback directly in the Telegram chat. The message history can also be seen in the <code class="file docutils literal notranslate"><span class="pre">MESSAGGI</span></code> subpanel.</p></li>
+</ul>
+<a class="reference internal image-reference" href="_images/repman3.JPG"><img alt="Bot Architecture" class="align-left" src="_images/repman3.JPG" style="width: 857.0px; height: 368.0px;" /></a>
+</dd>
+</dl>
+</div>
+<div class="section" id="deleting-a-report">
+<h4>Deleting a report<a class="headerlink" href="#deleting-a-report" title="Permalink to this headline"></a></h4>
+<p>To delete a report, it is sufficient to right-click on the specific row of the table and use the button <code class="file docutils literal notranslate"><span class="pre">CESTINA</span></code>.</p>
+<a class="reference internal image-reference" href="_images/del.JPG"><img alt="Bot Architecture" class="align-left" src="_images/del.JPG" style="width: 693.0px; height: 325.0px;" /></a>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to GeoCollector Bot’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="developers.html" class="btn btn-neutral float-right" title="Documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Martina.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
