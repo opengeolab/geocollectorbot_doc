@@ -1,6 +1,6 @@
 # Geo Collector Bot documentation
 
-Documentation for users and developers of Telegram Bot [Geo Collector Bot](https://github.com/opengeolab/geocollectorbot).
+Documentation for users and developers of Telegram Bot [Geo Collector Bot](https://geocollectorbot-doc.readthedocs.io).
 
 ## Local development
 
